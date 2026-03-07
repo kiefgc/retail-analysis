@@ -1,0 +1,151 @@
+antecedents,consequents,support,confidence,lift
+"frozenset({'Fashion', 'Beauty'})",frozenset({'Sports'}),0.0542,0.46245733788395904,1.3085946176682486
+"frozenset({'Food', 'Electronics'})",frozenset({'Sports'}),0.054,0.45608108108108103,1.2905520121139815
+"frozenset({'Fashion', 'Food'})",frozenset({'Sports'}),0.052,0.4529616724738676,1.2817251626312043
+"frozenset({'Beauty', 'Electronics'})",frozenset({'Sports'}),0.0554,0.44894651539708263,1.2703636542079306
+"frozenset({'Beauty', 'Home & Garden'})",frozenset({'Sports'}),0.0506,0.4392361111111111,1.2428865622838459
+"frozenset({'Beauty', 'Food'})",frozenset({'Sports'}),0.055,0.4372019077901431,1.2371304691288714
+"frozenset({'Sports', 'Electronics'})",frozenset({'Beauty'}),0.0554,0.4355345911949685,1.24225496632906
+"frozenset({'Fashion', 'Electronics'})",frozenset({'Sports'}),0.0502,0.43425605536332185,1.2287947237219068
+"frozenset({'Toys', 'Sports'})",frozenset({'Beauty'}),0.0526,0.43327841845140036,1.2358197902207653
+"frozenset({'Toys', 'Beauty'})",frozenset({'Sports'}),0.0526,0.43185550082101803,1.2220019830815452
+"frozenset({'Home & Garden', 'Electronics'})",frozenset({'Sports'}),0.0504,0.4315068493150685,1.2210154196804428
+"frozenset({'Toys', 'Sports'})",frozenset({'Food'}),0.0522,0.42998352553542013,1.2736478836949647
+"frozenset({'Toys', 'Food'})",frozenset({'Sports'}),0.0522,0.42927631578947373,1.2147037798230722
+"frozenset({'Sports', 'Food'})",frozenset({'Beauty'}),0.055,0.4283489096573209,1.2217595825936134
+"frozenset({'Fashion', 'Sports'})",frozenset({'Beauty'}),0.0542,0.42812006319115326,1.2211068545098496
+"frozenset({'Books', 'Home & Garden'})",frozenset({'Sports'}),0.0504,0.42784380305602715,1.2106502633164322
+"frozenset({'Sports', 'Electronics'})",frozenset({'Food'}),0.054,0.4245283018867924,1.2574890458732002
+"frozenset({'Sports', 'Food'})",frozenset({'Electronics'}),0.054,0.42056074766355145,1.253908013308144
+"frozenset({'Beauty', 'Books'})",frozenset({'Sports'}),0.053,0.4199683042789223,1.1883653205402442
+"frozenset({'Toys', 'Home & Garden'})",frozenset({'Sports'}),0.0504,0.4158415841584158,1.1766881272167964
+"frozenset({'Toys', 'Sports'})",frozenset({'Home & Garden'}),0.0504,0.41515650741350907,1.2497185653627607
+"frozenset({'Home & Garden', 'Sports'})",frozenset({'Beauty'}),0.0506,0.41407528641571195,1.1810475938839473
+"frozenset({'Books', 'Sports'})",frozenset({'Beauty'}),0.053,0.412772585669782,1.1773319614083912
+"frozenset({'Books', 'Electronics'})",frozenset({'Sports'}),0.0514,0.41252006420545745,1.167289372398012
+"frozenset({'Home & Garden', 'Sports'})",frozenset({'Electronics'}),0.0504,0.41243862520458263,1.2296917865372172
+"frozenset({'Home & Garden', 'Sports'})",frozenset({'Toys'}),0.0504,0.41243862520458263,1.2202326189484693
+"frozenset({'Home & Garden', 'Sports'})",frozenset({'Books'}),0.0504,0.41243862520458263,1.1644229960603687
+"frozenset({'Beauty', 'Sports'})",frozenset({'Electronics'}),0.0554,0.4115898959881129,1.2271612879788698
+"frozenset({'Fashion', 'Sports'})",frozenset({'Food'}),0.052,0.4107424960505529,1.2166543129459506
+"frozenset({'Beauty', 'Sports'})",frozenset({'Food'}),0.055,0.4086181277860327,1.210361752920713
+"frozenset({'Books', 'Food'})",frozenset({'Sports'}),0.0506,0.4080645161290323,1.1546817094766053
+"frozenset({'Sports', 'Food'})",frozenset({'Toys'}),0.0522,0.4065420560747664,1.2027871481501964
+"frozenset({'Books', 'Food'})",frozenset({'Beauty'}),0.0504,0.4064516129032258,1.1593029461016138
+"frozenset({'Sports', 'Food'})",frozenset({'Fashion'}),0.052,0.4049844236760125,1.2118025843088345
+"frozenset({'Sports', 'Electronics'})",frozenset({'Books'}),0.0514,0.4040880503144654,1.140847121158852
+"frozenset({'Beauty', 'Sports'})",frozenset({'Fashion'}),0.0542,0.4026745913818722,1.204891057396386
+"frozenset({'Beauty', 'Food'})",frozenset({'Books'}),0.0504,0.40063593004769477,1.1311008753463996
+"frozenset({'Books', 'Sports'})",frozenset({'Electronics'}),0.0514,0.4003115264797508,1.1935346645192333
+"frozenset({'Beauty', 'Books'})",frozenset({'Food'}),0.0504,0.3993660855784469,1.1829564146281009
+"frozenset({'Fashion', 'Sports'})",frozenset({'Electronics'}),0.0502,0.39652448657188,1.182243549707454
+"frozenset({'Sports', 'Electronics'})",frozenset({'Home & Garden'}),0.0504,0.3962264150943396,1.192734542728295
+"frozenset({'Sports', 'Electronics'})",frozenset({'Fashion'}),0.0502,0.39465408805031443,1.1808919450936997
+"frozenset({'Books', 'Sports'})",frozenset({'Food'}),0.0506,0.39408099688473525,1.16730153105668
+"frozenset({'Sports', 'Food'})",frozenset({'Books'}),0.0506,0.39408099688473525,1.1125945705384959
+"frozenset({'Beauty', 'Sports'})",frozenset({'Books'}),0.053,0.3937592867756315,1.1116862980678472
+"frozenset({'Books', 'Sports'})",frozenset({'Home & Garden'}),0.0504,0.39252336448598135,1.1815874909270963
+"frozenset({'Beauty', 'Sports'})",frozenset({'Toys'}),0.0526,0.39078751857355126,1.1561760904542937
+frozenset({'Beauty'}),frozenset({'Sports'}),0.1346,0.3839132915002852,1.0863420812118993
+frozenset({'Sports'}),frozenset({'Beauty'}),0.1346,0.3808715336728919,1.0863420812118991
+frozenset({'Food'}),frozenset({'Sports'}),0.1284,0.3803317535545023,1.0762075652362828
+frozenset({'Electronics'}),frozenset({'Sports'}),0.1272,0.3792486583184258,1.0731427796220312
+frozenset({'Fashion'}),frozenset({'Sports'}),0.1266,0.37881508078994613,1.0719159048951503
+"frozenset({'Beauty', 'Sports'})",frozenset({'Home & Garden'}),0.0506,0.37592867756315007,1.1316335868848588
+frozenset({'Food'}),frozenset({'Beauty'}),0.1258,0.3726303317535545,1.0628360860055746
+frozenset({'Electronics'}),frozenset({'Books'}),0.1246,0.37149672033392966,1.0488332025237992
+frozenset({'Electronics'}),frozenset({'Beauty'}),0.1234,0.36791890280262374,1.0493978973263653
+frozenset({'Home & Garden'}),frozenset({'Sports'}),0.1222,0.36785069235400364,1.040890470724402
+frozenset({'Food'}),frozenset({'Books'}),0.124,0.3672985781990521,1.036980740257064
+frozenset({'Home & Garden'}),frozenset({'Toys'}),0.1212,0.36484045755568933,1.0794096377387257
+frozenset({'Sports'}),frozenset({'Food'}),0.1284,0.3633276740237691,1.0762075652362828
+frozenset({'Sports'}),frozenset({'Books'}),0.1284,0.3633276740237691,1.0257698306712848
+frozenset({'Books'}),frozenset({'Sports'}),0.1284,0.362507058159232,1.0257698306712848
+frozenset({'Toys'}),frozenset({'Beauty'}),0.1218,0.3603550295857988,1.027823815133482
+frozenset({'Food'}),frozenset({'Toys'}),0.1216,0.36018957345971564,1.0656496256204604
+frozenset({'Beauty'}),frozenset({'Books'}),0.1262,0.3599543639475185,1.0162460868083527
+frozenset({'Sports'}),frozenset({'Electronics'}),0.1272,0.3599320882852292,1.0731427796220312
+frozenset({'Toys'}),frozenset({'Food'}),0.1216,0.35976331360946745,1.0656496256204604
+frozenset({'Fashion'}),frozenset({'Books'}),0.1202,0.35966487133453023,1.0154287728247606
+frozenset({'Toys'}),frozenset({'Sports'}),0.1214,0.35917159763313605,1.0163316288430562
+frozenset({'Beauty'}),frozenset({'Food'}),0.1258,0.358813462635482,1.0628360860055746
+frozenset({'Toys'}),frozenset({'Home & Garden'}),0.1212,0.3585798816568047,1.079409637738726
+frozenset({'Sports'}),frozenset({'Fashion'}),0.1266,0.35823429541595925,1.0719159048951503
+frozenset({'Electronics'}),frozenset({'Toys'}),0.1196,0.35658914728682173,1.054997477179946
+frozenset({'Books'}),frozenset({'Beauty'}),0.1262,0.35629587803500845,1.0162460868083527
+frozenset({'Toys'}),frozenset({'Books'}),0.12,0.35502958579881655,1.0023421394658851
+frozenset({'Home & Garden'}),frozenset({'Books'}),0.1178,0.35460565924142085,1.001145283007964
+frozenset({'Toys'}),frozenset({'Electronics'}),0.1196,0.3538461538461538,1.0549974771799457
+frozenset({'Electronics'}),frozenset({'Food'}),0.1184,0.35301132975551586,1.0456496734464331
+frozenset({'Beauty'}),frozenset({'Electronics'}),0.1234,0.3519680547632629,1.0493978973263653
+frozenset({'Books'}),frozenset({'Electronics'}),0.1246,0.3517786561264822,1.048833202523799
+frozenset({'Home & Garden'}),frozenset({'Electronics'}),0.1168,0.3515954244431066,1.0482868945829058
+frozenset({'Food'}),frozenset({'Electronics'}),0.1184,0.35071090047393366,1.0456496734464331
+frozenset({'Fashion'}),frozenset({'Beauty'}),0.1172,0.350688210652304,1.000251599122373
+frozenset({'Books'}),frozenset({'Food'}),0.124,0.35008469791078484,1.036980740257064
+frozenset({'Electronics'}),frozenset({'Home & Garden'}),0.1168,0.3482409063804413,1.0482868945829058
+frozenset({'Beauty'}),frozenset({'Toys'}),0.1218,0.34740444951511695,1.027823815133482
+frozenset({'Home & Garden'}),frozenset({'Food'}),0.115,0.3461770018061409,1.0254058110371471
+frozenset({'Fashion'}),frozenset({'Electronics'}),0.1156,0.34590065828845,1.0313078660955577
+frozenset({'Sports'}),frozenset({'Home & Garden'}),0.1222,0.34578381437464634,1.040890470724402
+frozenset({'Electronics'}),frozenset({'Fashion'}),0.1156,0.3446630888491354,1.0313078660955577
+frozenset({'Sports'}),frozenset({'Toys'}),0.1214,0.343520090548953,1.0163316288430562
+frozenset({'Fashion'}),frozenset({'Food'}),0.1148,0.343506882106523,1.0174966887041559
+frozenset({'Fashion'}),frozenset({'Toys'}),0.1148,0.343506882106523,1.0162925506110148
+frozenset({'Home & Garden'}),frozenset({'Fashion'}),0.1138,0.34256472004816374,1.025029084524727
+frozenset({'Food'}),frozenset({'Home & Garden'}),0.115,0.3406398104265403,1.0254058110371471
+frozenset({'Fashion'}),frozenset({'Home & Garden'}),0.1138,0.3405146618791143,1.025029084524727
+frozenset({'Food'}),frozenset({'Fashion'}),0.1148,0.3400473933649289,1.0174966887041559
+frozenset({'Toys'}),frozenset({'Fashion'}),0.1148,0.33964497041420116,1.0162925506110148
+frozenset({'Books'}),frozenset({'Fashion'}),0.1202,0.339356295878035,1.0154287728247606
+frozenset({'Books'}),frozenset({'Toys'}),0.12,0.3387916431394692,1.0023421394658851
+frozenset({'Beauty'}),frozenset({'Fashion'}),0.1172,0.33428408442669705,1.000251599122373
+frozenset({'Books'}),frozenset({'Home & Garden'}),0.1178,0.33258046301524563,1.001145283007964
+frozenset({'Electronics'}),"frozenset({'Beauty', 'Sports'})",0.0554,0.1651759093619559,1.22716128797887
+frozenset({'Food'}),"frozenset({'Beauty', 'Sports'})",0.055,0.16291469194312796,1.210361752920713
+frozenset({'Fashion'}),"frozenset({'Beauty', 'Sports'})",0.0542,0.16217833632555356,1.204891057396386
+frozenset({'Electronics'}),"frozenset({'Sports', 'Food'})",0.054,0.16100178890876565,1.253908013308144
+frozenset({'Food'}),"frozenset({'Sports', 'Electronics'})",0.054,0.15995260663507108,1.2574890458732002
+frozenset({'Beauty'}),"frozenset({'Sports', 'Electronics'})",0.0554,0.15801483171705646,1.24225496632906
+frozenset({'Beauty'}),"frozenset({'Sports', 'Food'})",0.055,0.15687393040501996,1.2217595825936134
+frozenset({'Sports'}),"frozenset({'Beauty', 'Electronics'})",0.0554,0.15676287492925864,1.2703636542079306
+frozenset({'Sports'}),"frozenset({'Beauty', 'Food'})",0.055,0.155631013016412,1.2371304691288711
+frozenset({'Toys'}),"frozenset({'Beauty', 'Sports'})",0.0526,0.1556213017751479,1.1561760904542935
+frozenset({'Fashion'}),"frozenset({'Sports', 'Food'})",0.052,0.15559545182525433,1.2118025843088345
+frozenset({'Food'}),"frozenset({'Toys', 'Sports'})",0.0522,0.15462085308056872,1.2736478836949647
+frozenset({'Beauty'}),"frozenset({'Fashion', 'Sports'})",0.0542,0.15459212778094694,1.2211068545098496
+frozenset({'Toys'}),"frozenset({'Sports', 'Food'})",0.0522,0.1544378698224852,1.2027871481501964
+frozenset({'Food'}),"frozenset({'Fashion', 'Sports'})",0.052,0.15402843601895733,1.2166543129459506
+frozenset({'Sports'}),"frozenset({'Fashion', 'Beauty'})",0.0542,0.15336728919071874,1.3085946176682486
+frozenset({'Electronics'}),"frozenset({'Books', 'Sports'})",0.0514,0.15324985092426954,1.1935346645192333
+frozenset({'Sports'}),"frozenset({'Food', 'Electronics'})",0.054,0.15280135823429541,1.2905520121139815
+frozenset({'Home & Garden'}),"frozenset({'Beauty', 'Sports'})",0.0506,0.152317880794702,1.1316335868848588
+frozenset({'Home & Garden'}),"frozenset({'Toys', 'Sports'})",0.0504,0.15171583383503914,1.2497185653627607
+frozenset({'Home & Garden'}),"frozenset({'Sports', 'Electronics'})",0.0504,0.15171583383503914,1.1927345427282952
+frozenset({'Home & Garden'}),"frozenset({'Books', 'Sports'})",0.0504,0.15171583383503914,1.1815874909270963
+frozenset({'Beauty'}),"frozenset({'Books', 'Sports'})",0.053,0.15116942384483742,1.1773319614083912
+frozenset({'Electronics'}),"frozenset({'Home & Garden', 'Sports'})",0.0504,0.15026833631484796,1.2296917865372172
+frozenset({'Fashion'}),"frozenset({'Sports', 'Electronics'})",0.0502,0.15020945541591862,1.1808919450936999
+frozenset({'Beauty'}),"frozenset({'Toys', 'Sports'})",0.0526,0.1500285225328009,1.2358197902207655
+frozenset({'Sports'}),"frozenset({'Beauty', 'Books'})",0.053,0.14997170345217883,1.1883653205402442
+frozenset({'Food'}),"frozenset({'Books', 'Sports'})",0.0506,0.1498815165876777,1.16730153105668
+frozenset({'Electronics'}),"frozenset({'Fashion', 'Sports'})",0.0502,0.14967203339296364,1.182243549707454
+frozenset({'Books'}),"frozenset({'Beauty', 'Sports'})",0.053,0.14963297571993223,1.1116862980678472
+frozenset({'Food'}),"frozenset({'Beauty', 'Books'})",0.0504,0.14928909952606634,1.1829564146281009
+frozenset({'Toys'}),"frozenset({'Home & Garden', 'Sports'})",0.0504,0.14911242603550295,1.2202326189484693
+frozenset({'Sports'}),"frozenset({'Toys', 'Beauty'})",0.0526,0.14883984153933222,1.2220019830815452
+frozenset({'Sports'}),"frozenset({'Toys', 'Food'})",0.0522,0.14770797962648557,1.2147037798230722
+frozenset({'Sports'}),"frozenset({'Fashion', 'Food'})",0.052,0.14714204867006225,1.2817251626312043
+frozenset({'Sports'}),"frozenset({'Books', 'Electronics'})",0.0514,0.14544425580079232,1.1672893723980122
+frozenset({'Books'}),"frozenset({'Sports', 'Electronics'})",0.0514,0.14511575381140598,1.140847121158852
+frozenset({'Beauty'}),"frozenset({'Home & Garden', 'Sports'})",0.0506,0.14432401597261835,1.181047593883947
+frozenset({'Beauty'}),"frozenset({'Books', 'Food'})",0.0504,0.1437535653166001,1.1593029461016138
+frozenset({'Sports'}),"frozenset({'Beauty', 'Home & Garden'})",0.0506,0.14318053197509903,1.2428865622838459
+frozenset({'Sports'}),"frozenset({'Books', 'Food'})",0.0506,0.14318053197509903,1.154681709476605
+frozenset({'Books'}),"frozenset({'Sports', 'Food'})",0.0506,0.14285714285714285,1.1125945705384959
+frozenset({'Sports'}),"frozenset({'Home & Garden', 'Electronics'})",0.0504,0.14261460101867574,1.221015419680443
+frozenset({'Sports'}),"frozenset({'Books', 'Home & Garden'})",0.0504,0.14261460101867574,1.2106502633164324
+frozenset({'Sports'}),"frozenset({'Toys', 'Home & Garden'})",0.0504,0.14261460101867574,1.1766881272167964
+frozenset({'Books'}),"frozenset({'Home & Garden', 'Sports'})",0.0504,0.14229249011857706,1.1644229960603687
+frozenset({'Books'}),"frozenset({'Beauty', 'Food'})",0.0504,0.14229249011857706,1.1311008753463996
+frozenset({'Sports'}),"frozenset({'Fashion', 'Electronics'})",0.0502,0.1420486700622524,1.2287947237219068
