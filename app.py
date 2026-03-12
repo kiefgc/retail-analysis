@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import plotly.graph_objects as go
 import joblib
 import os
 
@@ -340,11 +341,100 @@ def preprocess_batch(df: pd.DataFrame) -> pd.DataFrame:
     processed[NUMERICAL_COLS] = models['scaler'].transform(processed[NUMERICAL_COLS])
     return processed, None
 
+def make_radar_chart(scaled_df: pd.DataFrame, cluster_id: int) -> go.Figure:
+    # Cluster average profiles (from your training data analysis)
+    cluster_profiles = {
+        0: {'Age': 0.288, 'Total_Spending': 0.197, 'Visit_Frequency': 0.640,
+            'Avg_Session_Duration': 0.530, 'Avg_Pages_Viewed': 0.501,
+            'Avg_Rating': 0.720, 'Annual_Income': 0.191},
+        1: {'Age': 0.489, 'Total_Spending': 0.057, 'Visit_Frequency': 0.178,
+            'Avg_Session_Duration': 0.546, 'Avg_Pages_Viewed': 0.500,
+            'Avg_Rating': 0.799, 'Annual_Income': 0.055},
+        2: {'Age': 0.290, 'Total_Spending': 0.053, 'Visit_Frequency': 0.136,
+            'Avg_Session_Duration': 0.534, 'Avg_Pages_Viewed': 0.497,
+            'Avg_Rating': 0.432, 'Annual_Income': 0.052},
+        3: {'Age': 0.144, 'Total_Spending': 0.054, 'Visit_Frequency': 0.169,
+            'Avg_Session_Duration': 0.527, 'Avg_Pages_Viewed': 0.499,
+            'Avg_Rating': 0.822, 'Annual_Income': 0.051},
+    }
+
+    categories = ['Age', 'Total_Spending', 'Visit_Frequency',
+                  'Avg_Session_Duration', 'Avg_Pages_Viewed',
+                  'Avg_Rating', 'Annual_Income']
+
+    # Customer values
+    customer_vals = [float(scaled_df[c].values[0]) for c in categories]
+    # Cluster average values
+    cluster_vals  = [cluster_profiles[cluster_id][c] for c in categories]
+
+    # Close the loop for radar chart
+    customer_vals += [customer_vals[0]]
+    cluster_vals  += [cluster_vals[0]]
+    categories_closed = categories + [categories[0]]
+
+    cluster_colors = {
+        0: '#c9a84c', 1: '#4caf82', 2: '#cf6658', 3: '#6495ed'
+    }
+    color = cluster_colors[cluster_id]
+
+    fig = go.Figure()
+
+    # Cluster average trace
+    fig.add_trace(go.Scatterpolar(
+        r=cluster_vals,
+        theta=categories_closed,
+        fill='toself',
+        fillcolor=f'rgba({int(color[1:3], 16)}, {int(color[3:5], 16)}, {int(color[5:7], 16)}, 0.1)',
+        line=dict(color=color, width=2, dash='dash'),
+        name=f'{CLUSTER_NAMES[cluster_id]} avg'
+    ))
+
+    # Customer trace
+    fig.add_trace(go.Scatterpolar(
+        r=customer_vals,
+        theta=categories_closed,
+        fill='toself',
+        fillcolor='rgba(0, 179, 126, 0.15)',
+        line=dict(color='#00b37e', width=2),
+        name='This Customer'
+    ))
+
+    fig.update_layout(
+        polar=dict(
+            bgcolor='rgba(0,0,0,0)',
+            radialaxis=dict(
+                visible=True,
+                range=[0, 1],
+                gridcolor='#2a2d3a',
+                linecolor='#2a2d3a',
+                tickfont=dict(color='#8a8fa8', size=12),
+            ),
+            angularaxis=dict(
+                gridcolor='#2a2d3a',
+                linecolor='#2a2d3a',
+                tickfont=dict(color='#c8c3b8', size=15),
+            )
+        ),
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        font=dict(color='#c8c3b8'),
+        legend=dict(
+            font=dict(color='#c8c3b8', size=16),
+            bgcolor='rgba(0,0,0,0)',
+            itemsizing='constant',
+            tracegroupgap=10
+        ),
+        margin=dict(l=60, r=60, t=40, b=40),
+        height=400
+    )
+
+    return fig
+
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("## Retail Intelligence")
     st.markdown("<p class='section-label'>Navigation</p>", unsafe_allow_html=True)
-    page = st.radio("", ["Single Customer", "Batch Analysis"], label_visibility="collapsed")
+    page = st.radio("", ["Single Customer", "Batch Analysis", "Model Performance"], label_visibility="collapsed")
     st.markdown("<hr class='divider'>", unsafe_allow_html=True)
     st.markdown("<p class='section-label'>Cluster Reference</p>", unsafe_allow_html=True)
     for cid, name in CLUSTER_NAMES.items():
@@ -423,18 +513,29 @@ if page == "Single Customer":
                       help="Normalized spending score (0–1 scale)")
 
         st.markdown("<hr class='divider'>", unsafe_allow_html=True)
-        st.markdown(
-            f"<div class='result-card'>"
-            f"<p class='section-label'>Recommended Action</p>"
-            f"<span class='cluster-badge {BADGE_CLASS[c_id]}'>{c_name}</span><br><br>"
-            f"<p>{CLUSTER_ACTIONS[c_id]}</p>"
-            f"<p style='color:#8a8fa8; font-size:0.85rem'>{CLUSTER_DESCRIPTIONS[c_id]}</p>"
-            f"</div>",
-            unsafe_allow_html=True
-        )
+
+        # Radar chart + Recommended Action side by side
+        st.markdown("### Customer Profile vs Cluster Average")
+        info_col, radar_col = st.columns([1, 1.5])
+
+        with radar_col:
+            fig = make_radar_chart(scaled_df, c_id)
+            st.plotly_chart(fig, use_container_width=True)
+
+        with info_col:
+            st.markdown("<br>", unsafe_allow_html=True)
+            st.markdown(
+                f"<div class='result-card' style='min-height: 380px;'>"
+                f"<p class='section-label'>Recommended Action</p>"
+                f"<span class='cluster-badge {BADGE_CLASS[c_id]}'>{c_name}</span><br><br>"
+                f"<p>{CLUSTER_ACTIONS[c_id]}</p>"
+                f"<p style='color:#8a8fa8; font-size:0.85rem'>{CLUSTER_DESCRIPTIONS[c_id]}</p>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
 
 # ── Page: Batch Analysis ──────────────────────────────────────────────────────
-else:
+elif page == "Batch Analysis":
     st.markdown("<h1>Batch <span class='header-accent'>Analysis</span></h1>", unsafe_allow_html=True)
     st.markdown("Upload a CSV of customer profiles to run predictions across your entire dataset.")
     st.markdown("<hr class='divider'>", unsafe_allow_html=True)
@@ -483,7 +584,7 @@ else:
 
                     st.markdown("<hr class='divider'>", unsafe_allow_html=True)
 
-                    tab1, tab2 = st.tabs(["📊 Cluster Distribution", "📋 Full Results"])
+                    tab1, tab2 = st.tabs(["Cluster Distribution", "Full Results"])
 
                     with tab1:
                         cluster_counts = results_df['Cluster_Name'].value_counts()
@@ -507,3 +608,102 @@ else:
                             "customer_predictions.csv",
                             "text/csv"
                         )
+
+# ── Page: Model Performance ───────────────────────────────────────────────────
+elif page == "Model Performance":
+    st.markdown("<h1>Model <span class='header-accent'>Performance</span></h1>", unsafe_allow_html=True)
+    st.markdown("Summary of all models trained during the data mining pipeline.")
+    st.markdown("<hr class='divider'>", unsafe_allow_html=True)
+
+    # ── Classification Results ────────────────────────────────────────────────
+    st.markdown("### Classification Models")
+    st.markdown("Target variable: **Promotion Response** (Yes/No) — 80/20 train/test split, 5,000 customers")
+
+    clf_data = {
+        'Model':       ['Naïve Bayes', 'Decision Tree', 'Balanced Decision Tree',
+                        'Random Forest', 'SVM', 'Neural Network'],
+        'Accuracy':    [0.7010, 0.7440, 0.7320, 0.7500, 0.6150, 0.7470],
+        'Macro F1':    [0.67,   0.63,   0.70,   0.64,   0.61,   0.64],
+        'Recall (No)': [0.64,   0.32,   0.68,   0.34,   0.89,   0.35],
+        'Recall (Yes)':[0.73,   0.92,   0.75,   0.92,   0.50,   0.91],
+        'Selected':    ['',     '',     '✅',    '',     '',     '']
+    }
+    clf_df = pd.DataFrame(clf_data)
+
+    # Highlight selected model
+    def highlight_selected(row):
+        if row['Selected'] == '✅':
+            return ['background-color: rgba(0, 179, 126, 0.1); color: #00b37e'] * len(row)
+        return [''] * len(row)
+
+    st.dataframe(
+        clf_df.style.apply(highlight_selected, axis=1),
+        use_container_width=True,
+        hide_index=True
+    )
+
+    st.markdown("""
+    > **Selected Model: Balanced Decision Tree** — chosen for its superior Macro F1 (0.70),
+    indicating the most balanced performance across both classes. While Random Forest achieved
+    marginally higher accuracy (75.0%), the Balanced Decision Tree better handles the 70/30
+    class imbalance by correctly identifying both promotion responders and non-responders.
+    """)
+
+    st.markdown("<hr class='divider'>", unsafe_allow_html=True)
+
+    # ── Clustering Results ────────────────────────────────────────────────────
+    st.markdown("### Clustering Model (K-Means, K=4)")
+    st.markdown("Trained on 9 behavioral features, optimal K selected via Elbow Method.")
+
+    cluster_data = {
+        'Cluster':          ['0 — High Value Loyalist', '1 — Satisfied Passive',
+                             '2 — Dissatisfied Inactive', '3 — Young Casual'],
+        'Size':             [1085, 1421, 870, 1624],
+        'Avg Spending':     ['High (0.197)', 'Low (0.057)', 'Low (0.053)', 'Low (0.054)'],
+        'Visit Frequency':  ['High (0.640)', 'Low (0.178)', 'Low (0.136)', 'Low (0.169)'],
+        'Avg Rating':       ['0.720', '0.799', '0.432', '0.822'],
+        'Avg Income':       ['High (0.191)', 'Low (0.055)', 'Low (0.052)', 'Low (0.051)'],
+    }
+    st.dataframe(pd.DataFrame(cluster_data), use_container_width=True, hide_index=True)
+
+    st.markdown("<hr class='divider'>", unsafe_allow_html=True)
+
+    # ── Regression Results ────────────────────────────────────────────────────
+    st.markdown("### Regression Model (Linear Regression)")
+    st.markdown("Target variable: **Total Spending** — predicting normalized spending score from customer profile.")
+
+    r_col1, r_col2, r_col3 = st.columns(3)
+    r_col1.metric("R² Score", "0.2846", help="Explains 28.46% of variance in Total Spending")
+    r_col2.metric("RMSE", "0.0968", help="Root Mean Squared Error (normalized scale)")
+    r_col3.metric("MAE", "0.0594", help="Mean Absolute Error (normalized scale)")
+
+    st.markdown("""
+    > **Interpretation:** The R² of 0.2846 indicates the model explains 28.46% of variance
+    in Total Spending. This is expected given that spending is heavily driven by Visit Frequency
+    (coefficient: 0.232) — the strongest predictor by far. The absence of a true Annual Income
+    variable and the engineered nature of several features limits predictive power. A Random
+    Forest Regressor would likely yield a higher R² by capturing non-linear relationships.
+    """)
+
+    st.markdown("<hr class='divider'>", unsafe_allow_html=True)
+
+    # ── Association Mining Results ────────────────────────────────────────────
+    st.markdown("### Association Mining (Apriori)")
+    st.markdown("Min support: 0.05 | Min lift: 1.0 | 52 frequent itemsets, 150 rules generated")
+
+    rules_data = {
+        'Antecedents':   ['Fashion + Beauty', 'Electronics + Sports',
+                          'Toys + Sports', 'Food + Sports', 'Toys + Sports'],
+        'Consequents':   ['Sports', 'Beauty', 'Food', 'Electronics', 'Home & Garden'],
+        'Support':       [0.0542, 0.0554, 0.0522, 0.0540, 0.0504],
+        'Confidence':    [0.4625, 0.4355, 0.4300, 0.4206, 0.4152],
+        'Lift':          [1.3086, 1.2423, 1.2736, 1.2539, 1.2497],
+    }
+    st.dataframe(pd.DataFrame(rules_data), use_container_width=True, hide_index=True)
+
+    st.markdown("""
+    > **Key Finding:** Sports acts as a cross-category bridge, appearing in 4 out of 5 top rules.
+    All lift values exceed 1.0, confirming genuine positive associations rather than random
+    co-occurrence. Family shoppers (Toys + Sports) consistently cross-purchase Food and
+    Home & Garden, suggesting a distinct household segment worth targeting as a unit.
+    """)
