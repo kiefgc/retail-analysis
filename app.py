@@ -221,27 +221,27 @@ models = load_models()
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 CLUSTER_NAMES = {
-    0: "High Value Loyalist",
+    0: "Young Casual",
     1: "Satisfied Passive",
-    2: "Dissatisfied Inactive",
-    3: "Young Casual"
+    2: "High Value Loyalist",
+    3: "Dissatisfied Inactive"
 }
 
 CLUSTER_DESCRIPTIONS = {
-    0: "High spending, frequent visits, high income. Your most valuable customers.",
+    0: "Young, satisfied but low spending. Long-term nurture segment.",
     1: "Older demographic, infrequent but satisfied shoppers. Re-engagement targets.",
-    2: "Low engagement and low satisfaction. At risk of churning.",
-    3: "Young, satisfied but low spending. Long-term nurture segment."
+    2: "High spending, frequent visits, high income. Your most valuable customers.",
+    3: "Low engagement and low satisfaction. At risk of churning."
 }
 
 CLUSTER_ACTIONS = {
-    0: "🏆 Enroll in premium loyalty program. Offer exclusive early access and rewards.",
+    0: "🌱 Nurture with entry-level promotions. Build purchase habits early for long-term value.",
     1: "📧 Launch re-engagement campaign. A well-timed promotion could increase visit frequency.",
-    2: "🔍 Investigate pain points urgently. Consider a satisfaction survey or service recovery offer.",
-    3: "🌱 Nurture with entry-level promotions. Build purchase habits early for long-term value."
+    2: "🏆 Enroll in premium loyalty program. Offer exclusive early access and rewards.",
+    3: "🔍 Investigate pain points urgently. Consider a satisfaction survey or service recovery offer."
 }
 
-BADGE_CLASS = {0: "badge-0", 1: "badge-1", 2: "badge-2", 3: "badge-3"}
+BADGE_CLASS = {0: "badge-3", 1: "badge-1", 2: "badge-0", 3: "badge-2"}
 
 NUMERICAL_COLS = [
     'Age', 'Total_Spending', 'Visit_Frequency', 'Avg_Session_Duration',
@@ -342,20 +342,19 @@ def preprocess_batch(df: pd.DataFrame) -> pd.DataFrame:
     return processed, None
 
 def make_radar_chart(scaled_df: pd.DataFrame, cluster_id: int) -> go.Figure:
-    # Cluster average profiles (from your training data analysis)
     cluster_profiles = {
-        0: {'Age': 0.288, 'Total_Spending': 0.197, 'Visit_Frequency': 0.640,
-            'Avg_Session_Duration': 0.530, 'Avg_Pages_Viewed': 0.501,
-            'Avg_Rating': 0.720, 'Annual_Income': 0.191},
+        0: {'Age': 0.144, 'Total_Spending': 0.054, 'Visit_Frequency': 0.172,
+            'Avg_Session_Duration': 0.527, 'Avg_Pages_Viewed': 0.499,
+            'Avg_Rating': 0.820, 'Annual_Income': 0.052},
         1: {'Age': 0.489, 'Total_Spending': 0.057, 'Visit_Frequency': 0.178,
             'Avg_Session_Duration': 0.546, 'Avg_Pages_Viewed': 0.500,
-            'Avg_Rating': 0.799, 'Annual_Income': 0.055},
-        2: {'Age': 0.290, 'Total_Spending': 0.053, 'Visit_Frequency': 0.136,
+            'Avg_Rating': 0.800, 'Annual_Income': 0.055},
+        2: {'Age': 0.289, 'Total_Spending': 0.199, 'Visit_Frequency': 0.644,
+            'Avg_Session_Duration': 0.531, 'Avg_Pages_Viewed': 0.501,
+            'Avg_Rating': 0.720, 'Annual_Income': 0.191},
+        3: {'Age': 0.291, 'Total_Spending': 0.053, 'Visit_Frequency': 0.136,
             'Avg_Session_Duration': 0.534, 'Avg_Pages_Viewed': 0.497,
-            'Avg_Rating': 0.432, 'Annual_Income': 0.052},
-        3: {'Age': 0.144, 'Total_Spending': 0.054, 'Visit_Frequency': 0.169,
-            'Avg_Session_Duration': 0.527, 'Avg_Pages_Viewed': 0.499,
-            'Avg_Rating': 0.822, 'Annual_Income': 0.051},
+            'Avg_Rating': 0.432, 'Annual_Income': 0.051},
     }
 
     categories = ['Age', 'Total_Spending', 'Visit_Frequency',
@@ -373,7 +372,10 @@ def make_radar_chart(scaled_df: pd.DataFrame, cluster_id: int) -> go.Figure:
     categories_closed = categories + [categories[0]]
 
     cluster_colors = {
-        0: '#c9a84c', 1: '#4caf82', 2: '#cf6658', 3: '#6495ed'
+        0: '#6495ed',  # Young Casual — blue
+        1: '#4caf82',  # Satisfied Passive — green
+        2: '#c9a84c',  # High Value Loyalist — gold
+        3: '#cf6658',  # Dissatisfied Inactive — red
     }
     color = cluster_colors[cluster_id]
 
@@ -656,13 +658,13 @@ elif page == "Model Performance":
     st.markdown("Trained on 9 behavioral features, optimal K selected via Elbow Method.")
 
     cluster_data = {
-        'Cluster':          ['0 — High Value Loyalist', '1 — Satisfied Passive',
-                             '2 — Dissatisfied Inactive', '3 — Young Casual'],
-        'Size':             [1085, 1421, 870, 1624],
-        'Avg Spending':     ['High (0.197)', 'Low (0.057)', 'Low (0.053)', 'Low (0.054)'],
-        'Visit Frequency':  ['High (0.640)', 'Low (0.178)', 'Low (0.136)', 'Low (0.169)'],
-        'Avg Rating':       ['0.720', '0.799', '0.432', '0.822'],
-        'Avg Income':       ['High (0.191)', 'Low (0.055)', 'Low (0.052)', 'Low (0.051)'],
+        'Cluster':         ['0 — Young Casual', '1 — Satisfied Passive',
+                            '2 — High Value Loyalist', '3 — Dissatisfied Inactive'],
+        'Size':            [1641, 1426, 1063, 870],
+        'Avg Spending':    ['Low (0.054)', 'Low (0.057)', 'High (0.199)', 'Low (0.053)'],
+        'Visit Frequency': ['Low (0.172)', 'Low (0.178)', 'High (0.644)', 'Low (0.136)'],
+        'Avg Rating':      ['0.820', '0.800', '0.720', '0.432'],
+        'Avg Income':      ['Low (0.052)', 'Low (0.055)', 'High (0.191)', 'Low (0.051)'],
     }
     st.dataframe(pd.DataFrame(cluster_data), use_container_width=True, hide_index=True)
 
