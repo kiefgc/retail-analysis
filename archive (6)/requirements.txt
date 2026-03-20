@@ -3,5 +3,5 @@ pandas
 numpy
 scikit-learn
 joblib
-plotly
+plotly==5.18.0
 mlxtend
